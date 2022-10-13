@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('teachers/', TeacherView.as_view()),
     path('classrooms/', ClassroomView.as_view()),
-    path('teachers/<int:id>/classrooms', CreateClassroomView.as_view()),
+    path('teachers/<int:id>/classrooms/', CreateClassroomView.as_view()),
 ]
