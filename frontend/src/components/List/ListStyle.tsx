@@ -2,7 +2,7 @@ import { styled } from "@mui/material";
 
 export const MainList = styled('ul')`
     width: 100%;
-    max-width: 900px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: ${({ theme }) => theme.spacing(10, 2, 10, 2)};
 

@@ -2,10 +2,12 @@ import { Button } from '@mui/material';
 import type { NextPage } from 'next';
 import { captureRejectionSymbol } from 'stream';
 import { Teacher } from '../../@types/teacher';
+import { FormaterService } from '../../services/FormaterService';
 import { EmptyList, ItemDescription, ItemInfo, ItemName, ItemPhoto, ItemPrice, ListItem, MainList } from './ListStyle';
 
 interface ListProps {
     teachers: Teacher[];
+    onSelect: (teacher: Teacher) => void;
 }
 
 const List = (props: ListProps) => {
@@ -18,9 +20,9 @@ const List = (props: ListProps) => {
                 <ItemPhoto src={teacher.photo} />
                 <ItemInfo>
                     <ItemName>{teacher.name}</ItemName>
-                    <ItemPrice>{teacher.hour_value.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' })} por hora</ItemPrice>
-                    <ItemDescription>{teacher.description}</ItemDescription>
-                    <Button sx={{ width: '70%' }}>Marcar aula com {teacher.name}</Button>
+                    <ItemPrice>{FormaterService.formatPrice(teacher.hour_value)} por hora</ItemPrice>
+                    <ItemDescription>{FormaterService.limitText(teacher.description, 50)}</ItemDescription>
+                    <Button onClick={() => props.onSelect(teacher)} sx={{ width: '70%' }}>Marcar aula com {teacher.name}</Button>
                 </ItemInfo>
             </ListItem>
         ))}
